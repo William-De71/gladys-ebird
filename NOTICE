@@ -1,0 +1,15 @@
+Gladys eBird integration
+Copyright 2026 William-De71
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The bird observations and the taxonomy come from eBird (https://ebird.org),
+run by the Cornell Lab of Ornithology, through the eBird API 2.0
+(https://documenter.getpostman.com/view/664302/S1ENwy59), with the personal
+API key of each user and for non-commercial use, under the eBird API Terms of
+Use (https://www.birds.cornell.edu/home/ebird-api-terms-of-use/). The widgets
+credit "eBird.org, Cornell Lab of Ornithology".
+
+eBird and the Cornell Lab of Ornithology are trademarks of Cornell University.
+This project is not affiliated with, endorsed or sponsored by Cornell
+University or the Cornell Lab of Ornithology.

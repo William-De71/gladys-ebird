@@ -1,0 +1,301 @@
+{
+  "devices": {
+    "area": {
+      "external_id": "ext:ebird:area:main-house",
+      "should_poll": false,
+      "params": ["EBIRD_HOUSE"],
+      "features": [
+        {
+          "external_id": "ext:ebird:area:main-house:species",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 1000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:ebird:area:main-house:notable",
+          "category": "counter-sensor",
+          "type": "integer",
+          "min": 0,
+          "max": 1000,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:ebird:area:main-house:last_notable",
+          "category": "text",
+          "type": "text",
+          "min": 0,
+          "max": 0,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    },
+    "species": {
+      "external_id": "ext:ebird:species:eurhoo",
+      "should_poll": false,
+      "params": ["EBIRD_SPECIES_CODE"],
+      "features": [
+        {
+          "external_id": "ext:ebird:species:eurhoo:near",
+          "category": "presence-sensor",
+          "type": "binary",
+          "min": 0,
+          "max": 1,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:ebird:species:eurhoo:distance",
+          "category": "distance-sensor",
+          "type": "decimal",
+          "unit": "km",
+          "min": 0,
+          "max": 100,
+          "read_only": true,
+          "has_feedback": false
+        },
+        {
+          "external_id": "ext:ebird:species:eurhoo:days_ago",
+          "category": "duration",
+          "type": "integer",
+          "unit": "days",
+          "min": 0,
+          "max": 30,
+          "read_only": true,
+          "has_feedback": false
+        }
+      ]
+    }
+  },
+  "manifest": {
+    "actions": ["check"],
+    "config_schema": [
+      {
+        "key": "intro",
+        "type": "section"
+      },
+      {
+        "key": "api_key",
+        "type": "secret"
+      },
+      {
+        "key": "area",
+        "type": "section"
+      },
+      {
+        "key": "house",
+        "type": "select"
+      },
+      {
+        "key": "radius_km",
+        "type": "number"
+      },
+      {
+        "key": "days",
+        "type": "number"
+      },
+      {
+        "key": "watched",
+        "type": "string"
+      },
+      {
+        "key": "options",
+        "type": "section"
+      },
+      {
+        "key": "interval",
+        "type": "select",
+        "options": ["30", "60", "180"]
+      },
+      {
+        "key": "language",
+        "type": "select",
+        "options": ["auto", "en", "fr", "de", "es"]
+      }
+    ],
+    "scene_triggers": [
+      {
+        "key": "notable_bird",
+        "fields": [],
+        "variables": [
+          {
+            "key": "species_name",
+            "type": "string"
+          },
+          {
+            "key": "scientific_name",
+            "type": "string"
+          },
+          {
+            "key": "species_code",
+            "type": "string"
+          },
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "place",
+            "type": "string"
+          },
+          {
+            "key": "distance_km",
+            "type": "number"
+          },
+          {
+            "key": "observed_on",
+            "type": "string"
+          },
+          {
+            "key": "observed_time",
+            "type": "string"
+          },
+          {
+            "key": "reviewed",
+            "type": "boolean"
+          },
+          {
+            "key": "checklist_url",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          },
+          {
+            "key": "house",
+            "type": "string"
+          }
+        ]
+      },
+      {
+        "key": "watched_bird",
+        "fields": [
+          {
+            "key": "device",
+            "options": []
+          }
+        ],
+        "variables": [
+          {
+            "key": "species_name",
+            "type": "string"
+          },
+          {
+            "key": "scientific_name",
+            "type": "string"
+          },
+          {
+            "key": "species_code",
+            "type": "string"
+          },
+          {
+            "key": "count",
+            "type": "number"
+          },
+          {
+            "key": "place",
+            "type": "string"
+          },
+          {
+            "key": "distance_km",
+            "type": "number"
+          },
+          {
+            "key": "observed_on",
+            "type": "string"
+          },
+          {
+            "key": "observed_time",
+            "type": "string"
+          },
+          {
+            "key": "reviewed",
+            "type": "boolean"
+          },
+          {
+            "key": "checklist_url",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          },
+          {
+            "key": "house",
+            "type": "string"
+          },
+          {
+            "key": "device",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "scene_actions": [
+      {
+        "key": "find_species",
+        "fields": ["species", "days"],
+        "outputs": [
+          {
+            "key": "found",
+            "type": "boolean"
+          },
+          {
+            "key": "species_name",
+            "type": "string"
+          },
+          {
+            "key": "species_code",
+            "type": "string"
+          },
+          {
+            "key": "place",
+            "type": "string"
+          },
+          {
+            "key": "distance_km",
+            "type": "number"
+          },
+          {
+            "key": "observed_on",
+            "type": "string"
+          },
+          {
+            "key": "days_ago",
+            "type": "number"
+          },
+          {
+            "key": "checklist_url",
+            "type": "string"
+          },
+          {
+            "key": "summary",
+            "type": "string"
+          }
+        ]
+      }
+    ],
+    "widgets": [
+      {
+        "key": "nearby",
+        "settings": [],
+        "options": {}
+      },
+      {
+        "key": "notable",
+        "settings": [],
+        "options": {}
+      },
+      {
+        "key": "watched",
+        "settings": [],
+        "options": {}
+      }
+    ]
+  }
+}
